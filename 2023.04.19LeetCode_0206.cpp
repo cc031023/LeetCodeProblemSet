@@ -30,3 +30,22 @@ public:
         return now;
     }
 };
+// 神奇双指针
+class Solution
+{
+public:
+    ListNode *reverseList(ListNode *head)
+    {
+        if (!head)
+            return head;
+        ListNode *now = head;
+        while (head->next)
+        {
+            ListNode *node = head->next->next;
+            head->next->next = now;
+            now = head->next;
+            head->next = node;
+        }
+        return now;
+    }
+};
