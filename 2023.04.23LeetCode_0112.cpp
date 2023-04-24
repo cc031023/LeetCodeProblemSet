@@ -16,35 +16,35 @@ public:
 class Solution
 {
 public:
-    bool hasPathSum(TreeNode *root, int sum)
+    bool hasPathSum(TreeNode *root, int targetSum)
     {
-        if (root == nullptr)
+        if (!root)
             return false;
-        queue<TreeNode *> que_node;
-        queue<int> que_val;
-        que_node.push(root);
-        que_val.push(root->val);
-        while (!que_node.empty())
+        queue<int> q1;
+        queue<TreeNode *> q2;
+        q1.push(root->val);
+        q2.push(root);
+        while (!q2.empty())
         {
-            TreeNode *now = que_node.front();
-            int temp = que_val.front();
-            que_node.pop();
-            que_val.pop();
-            if (now->left == nullptr && now->right == nullptr)
+            TreeNode *now = q2.front();
+            q2.pop();
+            int val = q1.front();
+            q1.pop();
+            if (!now->left && !now->right)
             {
-                if (temp == sum)
+                if (targetSum == val)
                     return true;
                 continue;
             }
-            if (now->left != nullptr)
+            if (now->left)
             {
-                que_node.push(now->left);
-                que_val.push(now->left->val + temp);
+                q2.push(now->left);
+                q1.push(val + now->left->val);
             }
-            if (now->right != nullptr)
+            if (now->right)
             {
-                que_node.push(now->right);
-                que_val.push(now->right->val + temp);
+                q2.push(now->right);
+                q1.push(val + now->right->val);
             }
         }
         return false;
