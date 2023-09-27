@@ -18,7 +18,7 @@ private:
     }
 
 public:
-    TreeNode* lowestCommonans(TreeNode* root, TreeNode* p, TreeNode* q) {
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         vector<TreeNode*> path1 = GetPath(root, p);
         vector<TreeNode*> path2 = GetPath(root, q);
         TreeNode* ans = nullptr;
@@ -37,13 +37,13 @@ public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         TreeNode* ans = root;
         while (true) {
-            if (p->val < ans->val && q->val < ans->val)
-                ans = ans->left;
-            else if (p->val > ans->val && q->val > ans->val)
-                ans = ans->right;
+            if (p->val < ancestor->val && q->val < ancestor->val)
+                ancestor = ancestor->left;
+            else if (p->val > ancestor->val && q->val > ancestor->val)
+                ancestor = ancestor->right;
             else
                 break;
         }
-        return ans;
+        return ancestor;
     }
 };
