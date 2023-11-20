@@ -26,6 +26,6 @@ private:
     void merge(int x, int y, vector<int>& f) {
         int fx = find(x, f);
         int fy = find(y, f);
-        if (fx != fy) { f[fy] = fx; }
+        if (fx != fy) f[fy] = fx;
     }
 };
